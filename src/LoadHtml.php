@@ -14,6 +14,7 @@ use Slim\Http\ServerRequest;
 
 class LoadHtml
 {
+    
     const LEVEL = "L3";
     private MysqliDb $db;
     private array $LEVEL = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'];
