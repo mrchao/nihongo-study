@@ -14,8 +14,9 @@ use Slim\Http\ServerRequest;
 
 class LoadHtml
 {
-    
+    // 选择
     const LEVEL = "L3";
+
     private MysqliDb $db;
     private array $LEVEL = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'];
     const PATH_SOURCE = TMP_ROOT . '/topic/' . self::LEVEL . '/source';
