@@ -46,7 +46,6 @@ return function(App $app) {
     $app->get("/mochiToDict", MochiToDict::class);
 
     $app->any("[/{params:.*}]", function(ServerRequest $request, Response $response) {
-        echo phpinfo();
         return $response->write("404");
     });
 
