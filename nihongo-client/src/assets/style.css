@@ -1,0 +1,22 @@
+body {
+    margin: 0;
+}
+
+.var-checkbox {
+    font-family: monospace !important;
+}
+
+.cell-title {
+    padding: var(--cell-padding);
+    padding-bottom: 0;
+    color: #888;
+    font-size: 14px;
+}
+
+.var-cell__extra {
+    flex: none
+}
+
+.var-card__footer {
+    margin-top: 0 !important;
+}

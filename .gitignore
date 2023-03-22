@@ -1,0 +1,9 @@
+/vendor/
+node_modules/
+nihongo-study/
+.env
+.idea/
+tmp/
+tmpl/
+*.lock
+*.log

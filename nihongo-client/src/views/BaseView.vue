@@ -1,0 +1,52 @@
+<script lang="ts" setup>
+// name: BaseView
+// date: 2023/3/3
+// user: devine
+import {ref, onMounted} from "vue"
+import { useRouter } from "vue-router"
+import { useStorage } from "vue3-storage"
+import {useUserStore} from "../stores/user";
+const router = useRouter()
+const storage = useStorage()
+const userStore = useUserStore()
+
+const toHomeRoute = () => {
+  router.push("/")
+}
+
+onMounted(() => {
+  if(!userStore.load()) {
+    router.push("/login")
+  }
+})
+
+</script>
+
+<template>
+  <var-app-bar :elevation="false" title="首页">
+    <template #left>
+      <var-button @click="toHomeRoute" color="transparent" text-color="#FFF" round text>
+        <var-icon name="chevron-left" :size="24" />
+      </var-button>
+    </template>
+    <template #right>
+      <var-space>
+        <var-button color="#66bb6a" round ripple @click="router.push('/word')">
+          <var-icon name="message-text-outline" />
+        </var-button>
+        <var-button color="#66bb6a" round ripple @click="router.push('/topic')">
+          <var-icon name="card-account-details-outline" />
+        </var-button>
+      </var-space>
+    </template>
+  </var-app-bar>
+  <main>
+    <router-view />
+  </main>
+</template>
+
+<style scoped>
+main {
+  padding: 0 1em
+}
+</style>
