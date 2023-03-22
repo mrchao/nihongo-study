@@ -17,8 +17,8 @@ class LoadHtml
     const LEVEL = "L3";
     private MysqliDb $db;
     private array $LEVEL = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'];
-    const PATH_SOURCE = TMP_ROOT . '/topic/L3/source';
-    const PATH_TARGET = TMP_ROOT . '/topic/L3/target';
+    const PATH_SOURCE = TMP_ROOT . '/topic/' . self::LEVEL . '/source';
+    const PATH_TARGET = TMP_ROOT . '/topic/' . self::LEVEL . '/target';
     const FILTER_FILENAME_ARR = ['.','..', '.DS_Store'];
 
     const DOM_ROOT_CLASSNAME = '.analysis_block';
@@ -151,10 +151,10 @@ class LoadHtml
                 }
 
                 // todo: 明天改这里，dom里有一个标签没有找到，需要做空判断
-                $analysis = trim($item
+                $analysisDom = $item
                     ->find(".analysis_content")
-                    ->find(".content_box_title")
-                    ->innerHtml);
+                    ->find(".content_box");
+                $analysis = trim(strip_tags($analysisDom->innerHtml));
 
                 $fileRet[] = [
                     'id' => $id,
@@ -187,9 +187,6 @@ class LoadHtml
 
                 $row = $this->db
                     ->where('level', array_search(self::LEVEL, $this->LEVEL))
-//                    ->where('lesson_num', $fileArr[1])
-//                    ->where('lesson_num_split', $fileArr[2])
-//                    ->where('part_num', $fileArr[3])
                     ->where('lesson_num', $lessonNum)
                     ->where('lesson_num_split', $lessonNumSplit)
                     ->where('part_num', $partNum)
@@ -210,13 +207,40 @@ class LoadHtml
                         'answer_json'  => json_encode($answeredList),
                         'answered_num' => intval($answered),
                         'analysis'   => $analysis,
-                        'level'      => array_search('L2', $this->LEVEL),
+                        'level'      => array_search(self::LEVEL, $this->LEVEL),
                         'sort_num'   => $sortNum,
                         'lesson_num'     => $lessonNum,
                         'lesson_num_split' => $lessonNumSplit,
                         'part_num'  => $partNum,
                         'ver'        => '5.1',
                         'title'     => $title
+                    ]);
+                }else{
+                    $this->db
+                        ->where('level', array_search(self::LEVEL, $this->LEVEL))
+                        ->where('lesson_num', $lessonNum)
+                        ->where('lesson_num_split', $lessonNumSplit)
+                        ->where('part_num', $partNum)
+                        ->where('number', $topicNum)
+                        ->where('ver', '5.1')
+                        ->update("topic", [
+                            'number'     => $topicNum,
+                            'is_audio'   => boolval($isAudio),
+                            'has_image'  => boolval($hasImage),
+                            'audio_url'  => $audioUrl,
+                            'image_url'  => $imageUrl,
+                            'question'   => json_encode($question),
+                            'answer_num' => intval($answeredNum),
+                            'answer_json'  => json_encode($answeredList),
+                            'answered_num' => intval($answered),
+                            'analysis'   => $analysis,
+                            'level'      => array_search(self::LEVEL, $this->LEVEL),
+                            'sort_num'   => $sortNum,
+                            'lesson_num'     => $lessonNum,
+                            'lesson_num_split' => $lessonNumSplit,
+                            'part_num'  => $partNum,
+                            'ver'        => '5.1',
+                            'title'     => $title
                     ]);
                 }
 
