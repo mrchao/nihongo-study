@@ -54,7 +54,7 @@ const login = async () => {
     <var-input placeholder="登陆KEY" v-model="form.device_id" />
   </var-cell>
   <var-cell>
-    <var-button block @click="userStore.login(form)">登陆</var-button>
+    <var-button block @click="login()">登陆</var-button>
   </var-cell>
 </template>
 
