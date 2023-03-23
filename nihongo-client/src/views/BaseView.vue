@@ -34,9 +34,9 @@ onMounted(() => {
         <var-button color="#66bb6a" round ripple @click="router.push('/word')">
           <var-icon name="message-text-outline" />
         </var-button>
-        <var-button color="#66bb6a" round ripple @click="router.push('/topic')">
-          <var-icon name="card-account-details-outline" />
-        </var-button>
+<!--        <var-button color="#66bb6a" round ripple @click="router.push('/topic')">-->
+<!--          <var-icon name="card-account-details-outline" />-->
+<!--        </var-button>-->
       </var-space>
     </template>
   </var-app-bar>
