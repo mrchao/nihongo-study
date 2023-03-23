@@ -3,6 +3,7 @@ import axios from "axios";
 import {useUserStore} from "./user";
 import {defineStore} from "pinia";
 import {useStorage} from "vue3-storage";
+import stores from "./index";
 
 const storage = useStorage()
 
@@ -50,6 +51,10 @@ export const useAnswerHistoryStore = defineStore('answerHistoryStore', {
                 }
                 return []
             })
+        },
+        reset() {
+            storage.removeStorageSync("history");
+            this.load().then()
         }
     }
 })

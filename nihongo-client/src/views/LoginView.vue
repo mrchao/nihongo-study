@@ -30,6 +30,13 @@ onMounted(() => {
   })
 })
 
+const login = async () => {
+  const result = await userStore.login(form.value);
+  if(result) {
+    router.push("/").then()
+  }
+}
+
 </script>
 
 <template>

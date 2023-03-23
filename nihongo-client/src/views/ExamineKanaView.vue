@@ -8,6 +8,7 @@ import { Snackbar } from '@varlet/ui'
 import type { Input, Countdown } from '@varlet/ui/types'
 import { useStorage } from "vue3-storage"
 import {useBookStore} from "../stores/book"
+import { useAnswerHistoryStore } from "../stores/answerHistory";
 import vwSetting from "./SettingView.vue"
 import {useAnswerStore} from "../stores/answer"
 import {useRouter} from "vue-router";
@@ -15,6 +16,7 @@ import {useRouter} from "vue-router";
 const storage = useStorage()
 const bookStore = useBookStore()
 const answerStore = useAnswerStore()
+const answerHistoryStore = useAnswerHistoryStore()
 const router = useRouter()
 
 const audio = ref<HTMLAudioElement>()
@@ -74,14 +76,17 @@ const jumpAnswer = () => {
   }
 }
 
-const endAnswer = () => {
+const endAnswer = async () => {
   countdownRef.value?.reset()
   starting.value = false
   inputRef.value?.blur()
   if(answerStore.answerResult.amount > 0) {
     isAnswered.value = true
-    answerStore.submit()
-        .then(result => result && (isAnswered.value = true))
+    const result = await answerStore.submit()
+    if(result) {
+      isAnswered.value = true
+      answerHistoryStore.reset()
+    }
   }
 }
 

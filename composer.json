@@ -12,6 +12,7 @@
         "ext-json": "*",
         "ext-bcmath": "*",
         "ext-fileinfo": "*",
+        "ext-mbstring": "*",
         "paquettg/php-html-parser": "^2.2"
     },
     "autoload": {
