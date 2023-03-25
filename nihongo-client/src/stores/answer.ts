@@ -112,6 +112,9 @@ export const useAnswerStore = defineStore('answerStore', {
           if(dict) {
               this.currAnswer.useTimeMs = dayjs().unix() - this.currAnswer.useTimeMs
               this.currAnswer.result = [dict.kana, dict.kanji].includes(this.currAnswer.value)
+
+              this.currAnswer.result = dict.isRightList.includes(this.currAnswer.value)
+
               this.answeredList.push(clone(this.currAnswer))
               // 统计
               this.answerResult.spendTime += this.currAnswer.useTimeMs

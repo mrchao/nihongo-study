@@ -61,4 +61,25 @@ class StrUtil
             // throw new \Exception('不支持的数据类型：' . gettype($data));
         }
     }
+
+    public static function hasKanji(string $str): bool
+    {
+        return preg_match('/[\x{4E00}-\x{9FBF}]/u', $str) > 0;
+    }
+
+    public static function hasHiragana(string $str): bool
+    {
+        return preg_match('/[\x{3040}-\x{309F}]/u', $str) > 0;
+    }
+
+    public static function hasKatakana(string $str): bool
+    {
+        return preg_match('/[\x{30A0}-\x{30FF}]/u', $str) > 0;
+    }
+
+    public static function isJapanese($str): bool
+    {
+        return self::hasKanji($str) || self::hasHiragana($str) || self::hasKatakana($str);
+    }
+
 }

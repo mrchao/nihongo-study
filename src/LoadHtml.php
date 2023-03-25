@@ -15,7 +15,7 @@ use Slim\Http\ServerRequest;
 class LoadHtml
 {
     // 选择
-    const LEVEL = "L3";
+    const LEVEL = "L5";
 
     private MysqliDb $db;
     private array $LEVEL = ['L1', 'L2', 'L3', 'L4', 'L5', 'L6'];
@@ -174,18 +174,18 @@ class LoadHtml
                 // level sort_num part_num number ver lesson_num lesson_num_split
                 $fileArr = explode('.', $file);
 
-                if(self::LEVEL === 'L2') {
+//                if(self::LEVEL === 'L2') {
                     $lessonNum = $fileArr[1];
                     $lessonNumSplit = $fileArr[2];
                     $partNum = $fileArr[3];
                     $sortNum = $fileArr[0];
-                }else{
-                    $fileArr = explode('-', $fileArr[0]);
-                    $lessonNum = $fileArr[0];
-                    $lessonNumSplit = 0;
-                    $partNum = $fileArr[1];
-                    $sortNum = $idx + 1;
-                }
+//                }else{
+//                    $fileArr = explode('-', $fileArr[0]);
+//                    $lessonNum = $fileArr[0];
+//                    $lessonNumSplit = 0;
+//                    $partNum = $fileArr[1];
+//                    $sortNum = $idx + 1;
+//                }
 
                 $row = $this->db
                     ->where('level', array_search(self::LEVEL, $this->LEVEL))
@@ -261,7 +261,7 @@ EOT;
             $subLesson = "";
 
             $fileArr = explode('.', $file);
-            if(self::LEVEL === 'L2') {
+//            if(self::LEVEL === 'L2') {
                 $lessonNum = $fileArr[1];
                 $partNum = $fileArr[3];
                 switch ($fileArr[2]) {
@@ -273,11 +273,11 @@ EOT;
                         break;
                     default:
                 }
-            }else{
-                $fileArr = explode('-', $fileArr[0]);
-                $lessonNum = $fileArr[0];
-                $partNum = $fileArr[1];
-            }
+//            }else{
+//                $fileArr = explode('-', $fileArr[0]);
+//                $lessonNum = $fileArr[0];
+//                $partNum = $fileArr[1];
+//            }
             //var_dump($fileArr);exit;
             $newFileName = self::LEVEL . ".第{$lessonNum}课{$subLesson}.第{$partNum}关.html";
             file_put_contents(self::PATH_TARGET . '/' . $newFileName, $str);

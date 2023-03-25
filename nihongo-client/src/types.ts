@@ -61,6 +61,7 @@ export interface DictType {
     attr: string
     kana: string
     kanji: string
+    isRightList: string[]
 }
 
 export interface CategoryList {

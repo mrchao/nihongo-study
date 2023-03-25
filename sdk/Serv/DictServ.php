@@ -50,9 +50,9 @@ class DictServ
                 'lesson_num' => (int) $lessonStr,
                 // 'source' => $dc,
                 'kanji' => $kanji,
-                'kana' => $kana,
-                'ruby_code' => $newDc,
-                'html_code' => $htmlCode,
+                'kana' => mb_convert_kana($kana),
+                'ruby_code' => mb_convert_kana($newDc),
+                'html_code' => mb_convert_kana($htmlCode),
                 'translate_cn' => $newChinese,
                 'attr' => $newCx,
                 'sound_url' => $soundUrl
@@ -86,9 +86,11 @@ class DictServ
             if(empty($row)) {
                 $this->db->insert("dict", $item);
             }else{
-                $this->db
-                    ->where("sort_num", $sortNum)
-                    ->update("dict", $item);
+                if($row['is_fixed'] == 0 || $row['is_ignore'] == 0) {
+                    $this->db
+                        ->where("sort_num", $sortNum)
+                        ->update("dict", $item);
+                }
             }
         }
     }
@@ -137,12 +139,15 @@ class DictServ
     {
         $pattern = "/\[([^\]]+)\]/ui";
         $newStr = preg_replace($pattern, "", $str);
+        $newStr = mb_convert_kana($newStr, 'r');
         return str_replace(" ","", $newStr);
     }
 
     public function getKana($str)
     {
         $newStr = preg_replace("/(\p{Han}+)/ui", '', $str);
+        $newStr = mb_convert_kana($newStr, 'r');
+        $newStr = preg_replace("/\w+/", '', $newStr);
         return str_replace(["[","]", " "], "", $newStr);
     }
 
