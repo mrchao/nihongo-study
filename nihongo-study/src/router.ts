@@ -4,6 +4,7 @@ import AboutView from "./views/AboutView.vue"
 import LoginView from "./views/LoginView.vue"
 import BaseView from "./views/BaseView.vue"
 import KanjiView from "./views/Kanji/KanjiView.vue"
+import DictView from "./views/Dict/DictView.vue"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -18,6 +19,10 @@ const router = createRouter({
             path: '/word',
             name: 'word',
             component: KanjiView
+        },{
+            path: '/dict',
+            name: 'dict',
+            component: DictView
         }]
     },{
         path: '/about',

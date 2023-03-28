@@ -44,6 +44,12 @@ return function(App $app) {
 
     $app->get("/mochi", Mochi::class);
     $app->get("/mochiToDict", MochiToDict::class);
+    
+    $app->get("/admin/fetchBySortNum", [Dict::class, "getOneBySortNum"]);
+    $app->get("/admin/fetchByKanjiEqKana", [Dict::class, "getKanjiEqKanaList"]);
+    $app->post("/admin/syncKanjiList", [Dict::class, "syncKanjiList"]);
+
+    $app->get("/test", \Devine\NihongoStudy\Test::class);
 
     $app->any("[/{params:.*}]", function(ServerRequest $request, Response $response) {
         return $response->write("404");

@@ -24,3 +24,21 @@ export interface TranslateResultType {
     form: string;
     translate: string
 }
+
+export interface DictType {
+    id: number
+    html_code:string
+    ruby_code:string
+    unit_num: number
+    lesson_num: number
+    sort_num: number
+    sound_url: string
+    translate_cn: string
+    attr: string
+    kana: string
+    kanji: string
+    kanjiArr: string[]
+    isSync: boolean
+    isEnglish: boolean
+    hasKanji: boolean
+}
