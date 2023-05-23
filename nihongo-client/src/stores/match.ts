@@ -82,7 +82,6 @@ export const useMatchStore = defineStore('matchStore', {
         random() {
             const list = shuffle(this.wordList, 5);
             list.forEach((item,index) => {
-                console.log(item)
                 this.leftList[index] = {
                     id: item.id,
                     label: "",
@@ -92,6 +91,11 @@ export const useMatchStore = defineStore('matchStore', {
                     id: item.id,
                     label: ""
                 }
+
+                if(item.desc.length > 9) {
+                    item.desc = item.desc.slice(0,8) + '...'
+                }
+
                 if(item.kanji === '' || item.kanji === item.desc) {
                     this.leftList[index].label = item.kana
                     this.rightList[index].label = item.desc

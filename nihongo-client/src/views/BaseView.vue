@@ -31,10 +31,10 @@ onMounted(() => {
     </template>
     <template #right>
       <var-space>
-        <var-button color="#66bb6a" ripple @click="router.push('/study')">学习</var-button>
-        <var-button color="#66bb6a" ripple @click="router.push('/match')">配对</var-button>
-        <var-button color="#66bb6a" ripple @click="router.push('/write')">听写</var-button>
-        <var-button color="#66bb6a" ripple @click="router.push('/topic')">测验</var-button>
+        <var-button type="info" ripple @click="router.push('/study')">学习</var-button>
+        <var-button type="info" ripple @click="router.push('/match')">配对</var-button>
+        <var-button :disabled="true" type="info" ripple @click="router.push('/write')">听写</var-button>
+        <var-button type="info" ripple @click="router.push('/topic')">测验</var-button>
       </var-space>
     </template>
   </var-app-bar>
