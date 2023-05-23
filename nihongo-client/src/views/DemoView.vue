@@ -9,6 +9,20 @@ import {ref} from "vue"
   <h1>日本語・単語・練習</h1>
   <var-divider />
   <var-chip size="small" type="info">技术栈：vue3、pinia、Typescript、varletUI、Vite</var-chip>
+
+  <var-divider />
+  <var-space direction="column">
+    <var-space align="center">
+      <span class="title">2023-05-20</span>
+      <var-chip size="mini">v1.1.0</var-chip>
+    </var-space>
+    <span class="title">功能:</span>
+    <ol>
+      <li>新增新标日按课学习单词功能，支持艾宾浩斯记忆法</li>
+      <li>新增学习单词学习检测功能，5组单词配对</li>
+    </ol>
+  </var-space>
+
   <var-divider />
   <var-space direction="column">
     <var-space align="center">

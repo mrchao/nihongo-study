@@ -5,12 +5,23 @@ export interface OptionType {
 }
 
 export interface TopicType {
+    title: string
     id: number
     number: number
     question: string[]
     is_audio: boolean
     audio_url: string
     answer_json: string[]
+    answered_num: number
+    analysis:string
+    newAnswerJson: {
+        type: 0|1|2
+        value: string
+    }[]
+    newQuestion: {
+        type: 0|1|2
+        value:string
+    }[]
 }
 
 export interface AnswerResultKanaType {
@@ -69,3 +80,33 @@ export interface CategoryList {
         [lessonNum: string]: DictType[]
     }
 }
+
+export interface WordType {
+    id: number
+    kana: string
+    tone: string
+    kanji: string
+    desc: string
+    lesson: number
+    idx: number
+    pos: string
+    audio: string
+
+    study: number
+    studied: number
+    studied_status: number
+    studied_time: number
+}
+
+export interface WordGroup {
+    left: {
+        id: number
+        label: string
+        audio: string
+    }[]
+    right: {
+        id: number
+        label: string
+    }[]
+}
+

@@ -13,6 +13,7 @@ use Devine\NihongoStudy\Mochi;
 use Devine\NihongoStudy\MochiToDict;
 use Devine\NihongoStudy\ClientLogin;
 use Devine\NihongoStudy\Dict;
+use Devine\NihongoStudy\Word;
 
 return function(App $app) {
 
@@ -50,6 +51,13 @@ return function(App $app) {
     $app->post("/admin/syncKanjiList", [Dict::class, "syncKanjiList"]);
 
     $app->get("/test", \Devine\NihongoStudy\Test::class);
+
+    $app->get("/script/word", \Devine\NihongoStudy\ScriptWord::class);
+    $app->get("/word/all", [Word::class, "all"]);
+
+    // study
+    $app->get("/study/fetchByLesson", [Client\Study::class, "getByLesson"]);
+
 
     $app->any("[/{params:.*}]", function(ServerRequest $request, Response $response) {
         return $response->write("404");

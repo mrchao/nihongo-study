@@ -31,12 +31,10 @@ onMounted(() => {
     </template>
     <template #right>
       <var-space>
-        <var-button color="#66bb6a" round ripple @click="router.push('/word')">
-          <var-icon name="message-text-outline" />
-        </var-button>
-<!--        <var-button color="#66bb6a" round ripple @click="router.push('/topic')">-->
-<!--          <var-icon name="card-account-details-outline" />-->
-<!--        </var-button>-->
+        <var-button color="#66bb6a" ripple @click="router.push('/study')">学习</var-button>
+        <var-button color="#66bb6a" ripple @click="router.push('/match')">配对</var-button>
+        <var-button color="#66bb6a" ripple @click="router.push('/write')">听写</var-button>
+        <var-button color="#66bb6a" ripple @click="router.push('/topic')">测验</var-button>
       </var-space>
     </template>
   </var-app-bar>
