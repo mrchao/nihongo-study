@@ -14,9 +14,6 @@ const lessonChanged = () => {
 }
 
 const leftSelected = (id:number, audio:string) => {
-  if(matchStore.audioPlaying) {
-    return
-  }
   matchStore.currId = id
   matchStore.play(audio)
 }
@@ -45,7 +42,7 @@ const rightSelected = (id: number) => {
     <var-col :span="12" direction="column">
       <var-space direction="column" size="large">
         <template v-for="item in matchStore.leftList">
-          <var-button type="info"
+          <var-button type="info" size="large"
               :color="item.id !== matchStore.currId && !matchStore.rightIds.includes(item.id) ? 'linear-gradient(to right, #69dbaa, #3a7afe)' : ''"
               :disabled="matchStore.rightIds.includes(item.id)"
               block
@@ -58,7 +55,7 @@ const rightSelected = (id: number) => {
     <var-col :span="12"  direction="column">
       <var-space direction="column" size="large">
       <template v-for="item in matchStore.rightList">
-        <var-button type="info"
+        <var-button type="info" size="large"
             :color="!matchStore.rightIds.includes(item.id) ? 'linear-gradient(to left, #69dbaa, #3a7afe)' : ''"
             :disabled="matchStore.rightIds.includes(item.id)"
             block

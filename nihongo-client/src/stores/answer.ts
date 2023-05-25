@@ -6,7 +6,7 @@ import { shuffle, clone} from "lodash";
 import {useBookStore} from "./book";
 import dayjs from "dayjs";
 import {useUserStore} from "./user";
-import BigNumber from "bignumber.js"
+//import BigNumber from "bignumber.js"
 
 const storage = useStorage()
 
@@ -30,11 +30,11 @@ const countSense = (answerResult: AnswerResultType) => {
             return SENSE_ARR.indexOf('SSS')
         }
         if(answerResult.secOut15sNum === 0) {
-            const secIn10sBigNum = new BigNumber(answerResult.secIn10sNum)
-            const percent = secIn10sBigNum.div(answerResult.amount).decimalPlaces(2).times(100).toNumber()
-            if(percent >= 80) return SENSE_ARR.indexOf('SS')
-            if(percent >= 50) return SENSE_ARR.indexOf('S')
-            if(percent >= 30) return SENSE_ARR.indexOf('A+')
+            //const secIn10sBigNum = new BigNumber(answerResult.secIn10sNum)
+            //const percent = secIn10sBigNum.div(answerResult.amount).decimalPlaces(2).times(100).toNumber()
+            // if(percent >= 80) return SENSE_ARR.indexOf('SS')
+            // if(percent >= 50) return SENSE_ARR.indexOf('S')
+            // if(percent >= 30) return SENSE_ARR.indexOf('A+')
             return SENSE_ARR.indexOf('A')
         }
         return SENSE_ARR.indexOf('A-')
@@ -149,9 +149,9 @@ export const useAnswerStore = defineStore('answerStore', {
       },
       submit () {
           // 计算分数评价
-          const rightNumBigNum = new BigNumber(this.answerResult.rightNum);
-          this.answerResult.scoreNum = rightNumBigNum.div(this.answerResult.amount).decimalPlaces(2).times(100).toNumber();
-          this.answerResult.senseNum = countSense(this.answerResult)
+          //const rightNumBigNum = new BigNumber(this.answerResult.rightNum);
+          //this.answerResult.scoreNum = rightNumBigNum.div(this.answerResult.amount).decimalPlaces(2).times(100).toNumber();
+          //this.answerResult.senseNum = countSense(this.answerResult)
           this.answerResult.senseStr = SENSE_ARR[this.answerResult.senseNum]
           return apiSubmitAnswered(this.answerResult, this.answeredList)
               .then(result => {

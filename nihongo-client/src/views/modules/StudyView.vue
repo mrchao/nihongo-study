@@ -33,11 +33,19 @@ const confirmForget = () => {
     <span class="word" v-if="studyStore.currWord">{{ studyStore.currWord.kana }}</span>
   </div>
 
-  <var-row justify="space-between">
-    <var-button :disabled="studyStore.audioPlaying" @click="studyStore.next()">忽略</var-button>
-    <var-button :disabled="studyStore.audioPlaying" @click="showDesc = true" type="danger">忘记</var-button>
-    <var-button :disabled="studyStore.audioPlaying" @click="studyStore.blurry()" type="warning">模糊</var-button>
-    <var-button :disabled="studyStore.audioPlaying" @click="studyStore.remember()" type="success">记得</var-button>
+  <var-row justify="space-between" gutter="20">
+    <var-col :span="6">
+      <var-button block size="large" :disabled="studyStore.audioPlaying" @click="studyStore.next()">忽略</var-button>
+    </var-col>
+    <var-col :span="6">
+      <var-button block size="large" :disabled="studyStore.audioPlaying" @click="showDesc = true" type="danger">忘记</var-button>
+    </var-col>
+    <var-col :span="6">
+      <var-button block size="large" :disabled="studyStore.audioPlaying" @click="studyStore.blurry()" type="warning">模糊</var-button>
+    </var-col>
+    <var-col :span="6">
+      <var-button block size="large" :disabled="studyStore.audioPlaying" @click="studyStore.remember()" type="success">记得</var-button>
+    </var-col>
   </var-row>
 
   <var-dialog v-model:show="showDesc"

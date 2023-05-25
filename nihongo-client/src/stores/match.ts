@@ -23,6 +23,7 @@ interface StudyStore {
     rightList: RightWordType[]
     currId: number
     rightIds: number[]
+    audio: HTMLAudioElement
 }
 
 const apiGetCurrWord = (lesson: number) => {
@@ -46,7 +47,8 @@ export const useMatchStore = defineStore('matchStore', {
             leftList: [],
             rightList: [],
             currId: 0,
-            rightIds: []
+            rightIds: [],
+            audio: new Audio()
         }
     },
 
@@ -100,7 +102,7 @@ export const useMatchStore = defineStore('matchStore', {
                     this.leftList[index].label = item.kana
                     this.rightList[index].label = item.desc
                 }else{
-                    const leftLabel = random(['kana', 'kanji']);
+                    const leftLabel = random(['kana', 'kanji'])
                     if(leftLabel === 'kana') {
                         this.leftList[index].label = item.kana
                         const rightName = random(['kanji', 'desc'])
@@ -119,12 +121,8 @@ export const useMatchStore = defineStore('matchStore', {
 
         play(audio: string) {
             if(audio) {
-                this.audioPlaying = true
-                const sound = new Audio(audio)
-                sound.play().then()
-                sound.addEventListener("ended", () => {
-                    this.audioPlaying = false
-                })
+                this.audio.src = audio
+                this.audio.play().then()
             }
         }
     }

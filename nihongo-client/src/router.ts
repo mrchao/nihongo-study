@@ -1,13 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 import BaseView from "./views/BaseView.vue"
 import DemoView from "./views/DemoView.vue"
-import WordView from "./views/ExamineKanaView.vue"
-import SettingView from "./views/SettingView.vue"
+import WordView from "./views/modules/WriteView.vue"
+import SettingView from "./views/modules/SettingView.vue"
 import TopicView from "./views/TopicView.vue"
 import LoginView from "./views/LoginView.vue"
 import WordHistoryView from "./views/HistoryView.vue"
 import StudyView from "./views/modules/StudyView.vue"
 import MatchView from "./views/modules/MatchView.vue"
+import WriteView from "./views/modules/WriteView.vue"
 
 const router = createRouter({
     history: createWebHashHistory(),
@@ -45,6 +46,10 @@ const router = createRouter({
             path: '/match',
             name: 'match',
             component: MatchView
+        },{
+            path: '/write',
+            name: 'write',
+            component: WriteView
         }]
     },{
         path: '/about',

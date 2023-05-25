@@ -39,7 +39,7 @@ export const useStudyStore = defineStore('studyStore', {
             apiGetCurrWord(this.lesson).then(result => {
                 if(result) {
                     this.wordList = result
-                    console.log(this.wordList)
+                    // console.log(this.wordList)
                     this.next()
                 }
             })
