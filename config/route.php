@@ -57,6 +57,7 @@ return function(App $app) {
 
     // study
     $app->get("/study/fetchByLesson", [Client\Study::class, "getByLesson"]);
+    $app->post("/study/status", [Client\Study::class, "postStatus"]);
 
 
     $app->any("[/{params:.*}]", function(ServerRequest $request, Response $response) {
