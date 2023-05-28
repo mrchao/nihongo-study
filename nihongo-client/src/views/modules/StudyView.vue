@@ -4,12 +4,20 @@
 // user: haruki
 import {ref} from "vue"
 import {useStudyStore} from "../../stores/study";
-import { Dialog } from "@varlet/ui";
+import { Snackbar } from "@varlet/ui";
 
 const studyStore = useStudyStore()
 
 const lessonChanged = () => {
-  studyStore.get()
+  studyStore.get().then(result => {
+    console.log(result)
+    if(result) {
+      Snackbar.info({
+        content: "暂时没有可以复习的单词",
+        duration: 1000
+      })
+    }
+  })
 }
 
 const showDesc = ref<boolean>(false)
@@ -35,7 +43,7 @@ const confirmForget = () => {
 
   <var-row justify="space-between" gutter="20">
     <var-col :span="6">
-      <var-button block size="large" :disabled="studyStore.audioPlaying" @click="studyStore.next()">忽略</var-button>
+      <var-button block size="large" :disabled="studyStore.audioPlaying" @click="studyStore.ignore()">忽略</var-button>
     </var-col>
     <var-col :span="6">
       <var-button block size="large" :disabled="studyStore.audioPlaying" @click="showDesc = true" type="danger">忘记</var-button>
